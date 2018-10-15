@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+
+{% block title %}Edit Blog Post{% endblock %}
+
+{% block content %}
+    <h1>Edit Your Blog Post</h1>
+    {% set msgs = get_flashed_messages() %}
+    {% for each in msgs %}
+      {{ each }}
+      <br>
+      {% endfor %}
+      <br>
+    <form action="/auth" method="POST">
+      Date Edited: <input type="datetime-local" name="date_info"><br/>
+      Blog Text: <input type="text" name="blog_post" value="{{ prev_blog_info }}"> <br/>	
+      <input type="submit" name="submit">
+    </form>
+    <br>
+{% endblock %}

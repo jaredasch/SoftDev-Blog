@@ -1,4 +1,6 @@
-ryanA -- 2018-10-15 01:04
+ryanA -- 2018-10-15 13:04
 Made devlog
-ryanA -- 2018-10-15 01:14
+ryanA -- 2018-10-15 13:14
 Added base template
+ryanA -- 2018-10-15 18:08
+Added make_blog, edit_blog, landing_site templates.  Variables can be changed to fit future login vars, please let me know.

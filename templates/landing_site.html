@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block title %}College Bored's Blogsite{% endblock %}
+
+{% block content %}
+    <h1>College Bored's Blogsite</h1>
+    <br/>
+    {% for each in blog_data %}
+    	{{ each  }}
+        <br>
+    {% endfor %}
+
+{% endblock %}
