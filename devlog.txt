@@ -12,3 +12,6 @@ Formatted devlog, uploaded design document, remove templates until after code re
 
 belkebirI -- 2018-10-15 23:20
 Updated site map and uploaded new design document
+
+ryanA -- 2018-10-17 4:49
+Updated design doc, added site map
