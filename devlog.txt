@@ -9,3 +9,6 @@ Added make_blog, edit_blog, landing_site templates.  Variables can be changed to
 
 aschJ -- 2018-10-15 23:52
 Formatted devlog, uploaded design document, remove templates until after code review
+
+belkebirI -- 2018-10-15 23:20
+Updated site map and uploaded new design document
