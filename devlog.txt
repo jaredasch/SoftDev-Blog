@@ -7,10 +7,10 @@ Added base template
 ryanA -- 2018-10-15 18:08
 Added make_blog, edit_blog, landing_site templates.  Variables can be changed to fit future login vars, please let me know.
 
-aschJ -- 2018-10-15 23:52
+jaredA -- 2018-10-15 23:52
 Formatted devlog, uploaded design document, remove templates until after code review
 
-belkebirI -- 2018-10-15 23:20
+imadB -- 2018-10-15 23:20
 Updated site map and uploaded new design document
 
 ryanA -- 2018-10-17 4:49
