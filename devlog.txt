@@ -21,3 +21,6 @@ Creating user signup system
 
 imadB -- 2018-10-17 413:12
 Creating blog posting system
+
+ryanA -- 2018-10-17 18:03
+Atom didn't teletype my work; templates made

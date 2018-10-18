@@ -13,7 +13,7 @@ def signup():
         if(len(username) < 5):
             flash("Username must be 5 characters or longer")
             return redirect(url_for("signup"))
-        elif(len(c.execute("SELECT * FROM users WHERE users.username == ?", username) != 0):
+        elif(len(c.execute("SELECT * FROM users WHERE users.username == (?);", (username)) != 0):
             flash("User already exists");
             return redirect(url_for("signup"))
 
