@@ -22,7 +22,9 @@ def signup():
         if (len(password)<8):
             flash("Password must be 8 characters or longer")
             return redirect(url_for("signup"))
-            
+        elif " " in password:
+            flash("Password must not contain spaces")
+            return redirect(url_for("signup"))
 
 @app.route("/post", methods = ["GET", "POST"])
 def post():
