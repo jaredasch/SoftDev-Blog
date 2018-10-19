@@ -24,3 +24,6 @@ Creating blog posting system
 
 ryanA -- 2018-10-17 18:03
 Atom didn't teletype my work; templates made
+
+ryanA -- 2018-10-17 13:16
+Added some test data in db_builder, added some constraints for password, fixed syntax issue
