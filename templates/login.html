@@ -8,12 +8,11 @@
     {% set msgs = get_flashed_messages() %}
     {% for each in msgs %}
       {{ each }}
-      <br>
+      <br> <br/>
       {% endfor %}
-      <br>
-    <form action="/auth" method="POST">
-      Username: <input type="text" name="username"> <br>
-      Password: <input type="password" name="password"> <br>
+    <form action="/login" method="POST">
+      Username: <input type="text" name="username"> <br/><br/>
+      Password: <input type="password" name="password"> <br/><br/>
       <input type="submit" name="submit">
     </form>
     <br>

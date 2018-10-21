@@ -27,3 +27,12 @@ Atom didn't teletype my work; templates made
 
 ryanA -- 2018-10-17 13:16
 Added some test data in db_builder, added some constraints for password, fixed syntax issue
+
+jaredA -- 2018-10-21 17:02
+Modified templates to comply with design doc and existing server routes
+
+jaredA -- 2018-10-21 17:40
+Added early versions of count_users, create_user, and login_user
+
+jaredA -- 2018-10-21 18:05
+Working signup, login, and logout routes

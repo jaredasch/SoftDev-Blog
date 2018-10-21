@@ -1,48 +1,49 @@
 from flask import Flask, render_template, request, session, redirect, url_for, flash
-import sqlite3
-import hashlib, datetime
-#password = 'pa$$w0rd'
-#h = hashlib.md5(password.encode())
-#print(h.hexdigest())
+from util.db_utils import count_users, create_user, login_user, get_user
+from os import urandom
 
 app = Flask(__name__)
+app.secret_key = urandom(32)
 
 @app.route("/", methods=["GET", "POST"])
-def home():
-    return render_template("landing_site.html")
-#Need to figure out how to pick newest blogs with all info relevant
+def index():
+    return render_template("landing_site.html", user = get_user(session.get("user")))
+
 
 @app.route("/signup", methods = ["GET", "POST"])
 def signup():
+    if "user" in session.keys():
+        return redirect(url_for("index"))
     if request.method == "GET":
         return render_template("signup.html", title = "Sign Up")
     else:
         username = request.form.get("username")
-
-        if(len(username) < 5):
-            flash("Username must be 5 characters or longer")
-            return redirect(url_for("signup"))
-        elif(len(c.execute("SELECT * FROM users WHERE users.username == ?", username))>0):
-            #if statement has syntax issues; incomplete
-            flash("User already exists");
-            return redirect(url_for("signup"))
-
         password = request.form.get("password")
-        #Password criteria to be listed
-        if (len(password)<8):
-            flash("Password must be 8 characters or longer")
-            return redirect(url_for("signup"))
-        elif " " in password:
-            flash("Password must not contain spaces")
-            return redirect(url_for("signup"))
+        if create_user(username, password):
+            login_user(username, password)
+            return redirect(url_for("index"))
+        return render_template("signup.html", title = "Sign Up")
+
 
 @app.route("/login", methods = ["GET", "POST"])
 def login():
+    if "user" in session.keys():
+        return redirect(url_for("index"))
     if request.method == "GET":
         return render_template("login.html", title = "Login")
     else:
         username = request.form.get("username")
+        password = request.form.get("password")
+        login = login_user(username, password)
+        if login == None:
+            return render_template("login.html", title = "Login")
+        return redirect(url_for("index"))
 
+@app.route("/logout", methods = ["GET"])
+def logout():
+    if "user" in session.keys():
+        session.pop("user")
+    return redirect(url_for("login"))
 
 @app.route("/post", methods = ["GET", "POST"])
 def post():
