@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, session, redirect, url_for, flash
-from util.db_utils import count_users, create_user, login_user, get_user
+from util.db_utils import count_users, create_user, login_user, get_user, get_posts
 from os import urandom
 
 app = Flask(__name__)
@@ -7,7 +7,7 @@ app.secret_key = urandom(32)
 
 @app.route("/", methods=["GET", "POST"])
 def index():
-    return render_template("landing_site.html", user = get_user(session.get("user")))
+    return render_template("landing_site.html", current_user = session.get("user"))
 
 
 @app.route("/signup", methods = ["GET", "POST"])
@@ -39,14 +39,21 @@ def login():
             return render_template("login.html", title = "Login")
         return redirect(url_for("index"))
 
+
 @app.route("/logout", methods = ["GET"])
 def logout():
     if "user" in session.keys():
         session.pop("user")
     return redirect(url_for("login"))
 
-@app.route("/post", methods = ["GET", "POST"])
-def post():
+
+@app.route("/u/<username>", methods = ["GET"])
+def profile(username):
+    return render_template("profile.html", user = username, posts = get_posts(username), current_user = session.get("user"))
+
+
+@app.route("/create_post", methods = ["GET", "POST"])
+def create_post():
     if request.method == "GET":
         return render_template("post.html")
     else:

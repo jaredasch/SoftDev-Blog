@@ -36,3 +36,6 @@ Added early versions of count_users, create_user, and login_user
 
 jaredA -- 2018-10-21 18:05
 Working signup, login, and logout routes
+
+jaredA -- 2018-10-21 19:50
+Created profile template, fixed formatting on other templates
