@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+
+{% block title %} Welcome to the College Bored's Blog {% endblock %}
+
+{% block content %}
+
+{% if current_user %}
+    <h2>Welcome {{ current_user }}</h2>
+    <form action="{{ url_for('create_post') }}" method="POST">
+        <textarea name = "blog_post" placeholder="Post"></textarea></br>
+        <input type="submit" name = "Post" value="Post"/>
+    </form>
+{% endif %}
+
+{% for post in posts %}
+    <hr/>
+    <h3>{{ post[1] }}</h4>
+    {% if edit_id == post[0] %}
+        <form action="{{ url_for('edit', post_id = edit_id) }}" method="POST">
+            <textarea name = "blog_post">{{ post[2] }}</textarea></br>
+            <input type="submit" name = "Post" value="Submit Edit" />
+        </form>
+    {% else %}
+        <p>{{ post[2] }}</p>
+    {% endif %}
+    {% if post[1] == current_user %}
+        <a href = "{{ url_for('edit', post_id = post[0]) }}">Edit Post</a>
+    {% endif %}
+{% endfor %}
+
+{% endblock %}

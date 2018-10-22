@@ -84,3 +84,12 @@ def edit_post(post_id, text):
     c.execute("UPDATE posts SET body == ? WHERE posts.id == ?", [text, post_id])
     db.commit()
     db.close()
+
+
+def get_all_posts():
+    db = sqlite3.connect(DB_FILE)
+    c = db.cursor()
+    data = c.execute("SELECT * FROM posts").fetchall()
+    db.commit()
+    db.close()
+    return data

@@ -43,3 +43,9 @@ Created profile template, fixed formatting on other templates
 imadB -- 2018-10-21 23:30
 Created templates for creating and editing posts and their corresponding post/edit system.
 Still need to give ability to update specific blog posts, not all of them.
+
+jaredA -- 2018-10-22 12:30
+Make post editing inline
+
+jaredA -- 2018-10-22 13:01
+Created homepage

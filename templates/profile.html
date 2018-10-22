@@ -8,21 +8,25 @@
     {% if user == current_user %}
         <form action="{{ url_for('create_post') }}" method="POST">
             <textarea name = "blog_post"></textarea></br>
-            <input type="submit" name = "Post" />
+            <input type="submit" name = "Post" value="Post"/>
         </form>
     {% endif %}
+
+    <h2> Posts </h2>
 
     {% for post in posts %}
         <hr/>
         {% if edit_id == post[0] %}
             <form action="{{ url_for('edit', post_id = edit_id) }}" method="POST">
                 <textarea name = "blog_post">{{ post[2] }}</textarea></br>
-                <input type="submit" name = "Post" />
+                <input type="submit" name = "Post" value="Submit Edit"/>
             </form>
         {% else %}
             <p>{{ post[2] }}</p>
+            {% if post[1] == current_user %}
+                <a href = "{{ url_for('edit', post_id = post[0]) }}">Edit Post</a>
+            {% endif %}
         {% endif %}
-        <a href = "{{ url_for('edit', post_id = post[0]) }}">Edit Post</a>
     {% endfor %}
     <hr/>
 

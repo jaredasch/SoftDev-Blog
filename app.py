@@ -1,13 +1,13 @@
 from flask import Flask, render_template, request, session, redirect, url_for, flash
-from util.db_utils import count_users, create_user, login_user, get_user, insert_post, get_posts, edit_post, get_post
+from util.db_utils import create_user, login_user, insert_post, get_posts, edit_post, get_post, get_all_posts
 from os import urandom
 
 app = Flask(__name__)
 app.secret_key = urandom(32)
 
-@app.route("/", methods=["GET", "POST"])
+@app.route("/", methods=["GET"])
 def index():
-    return render_template("landing_site.html", current_user = session.get("user"))
+    return render_template("index.html", current_user = session.get("user"), posts = get_all_posts()[::-1])
 
 
 @app.route("/signup", methods = ["GET", "POST"])
@@ -49,7 +49,7 @@ def logout():
 
 @app.route("/u/<username>", methods = ["GET"])
 def profile(username):
-    return render_template("profile.html", user = username, posts = get_posts(username), current_user = session.get("user"))
+    return render_template("profile.html", user = username, posts = get_posts(username)[::-1], current_user = session.get("user"))
 
 
 @app.route("/create_post", methods = ["POST"])
@@ -63,14 +63,14 @@ def edit(post_id):
     if request.method == "GET":
         post = get_post(post_id)
         if(post[1] != session.get("user")):
-            return render_template("profile.html", user = post[1], posts = get_posts(get_post(post_id)[1]), current_user = session.get("user"))
-        return render_template("profile.html", user = session.get("user"), current_user = session.get("user"), posts = get_posts(get_post(post_id)[1]), edit_id = post_id)
-    
+            return redirect(url_for("profile", username = post[1]))
+        return render_template("profile.html", user = session.get("user"), current_user = session.get("user"), posts = get_posts(get_post(post_id)[1])[::-1], edit_id = post_id)
+
     post = get_post(post_id)
     if(post[1] != session.get("user")):
-        return render_template("profile.html", user = post[1], posts = get_posts(get_post(post_id)[1]), current_user = session.get("user"))
+        return redirect(url_for("profile", username = post[1]))
     edit_post(post_id, request.form.get("blog_post"))
-    return render_template("profile.html", user = post[1], posts = get_posts(get_post(post_id)[1]), current_user = session.get("user"))
+    return render_template("profile.html", user = post[1], posts = get_posts(get_post(post_id)[1])[::-1], current_user = session.get("user"))
 
 if __name__ == "__main__":
     app.debug = True
