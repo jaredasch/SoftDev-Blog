@@ -62,7 +62,16 @@ def insert_post(text):
 
 def get_posts(username):
     db = sqlite3.connect(DB_FILE)
+    db.text_factory = str
     c = db.cursor()
     posts = c.execute("SELECT * FROM posts WHERE posts.username == ?", [username]).fetchall()
     db.close()
     return posts
+
+
+def edit_post(text):
+    db = sqlite3.connect(DB_FILE)
+    c = db.cursor()
+    c.execute("UPDATE posts SET body = ? WHERE username = ?", [text, session.get("user")])
+    db.commit()
+    db.close()

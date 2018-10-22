@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, session, redirect, url_for, flash
-from util.db_utils import count_users, create_user, login_user, get_user, get_posts
+from util.db_utils import count_users, create_user, login_user, get_user, insert_post, get_posts, edit_post
 from os import urandom
 
 app = Flask(__name__)
@@ -55,19 +55,18 @@ def profile(username):
 @app.route("/create_post", methods = ["GET", "POST"])
 def create_post():
     if request.method == "GET":
-        return render_template("post.html")
-    else:
-        username = request.form.get("username")
+        return render_template("make_post.html")
+    insert_post(request.form.get("blog_post"))
+    return redirect(url_for("index"))
+
 
 @app.route("/edit", methods=["GET", "POST"])
 def edit():
-    if request.method == "POST":
-        return render_template("edit.html")
-    else:
-        username = request.form.get("username")
-        timestamp = request.form.get(times)
-        new_timestamp = now.isoformat()
-        post = request.form.get("posts")
+    if request.method == "GET":
+        return render_template("edit.html", blog_data = get_posts(session.get("user"))[0][2])
+    id = get_posts(session.get("user"))[0][0]
+    edit_post(request.form.get("blog_post"))
+    return redirect(url_for("index"))
 
 if __name__ == "__main__":
     app.debug = True

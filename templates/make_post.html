@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 
-{% block title %}Edit Blog Post{% endblock %}
+{% block title %}Create Blog Post{% endblock %}
 
 {% block content %}
     <h1>Write Your Blog Post</h1>
@@ -11,10 +11,10 @@
       <br>
       {% endfor %}
       <br>
-    <form action="/edit" method="POST">
+    <form action="/create_post" method="POST">
       Date Submitted: <input type="datetime-local" name="date_info"><br/>
-      Blog Text: <input type="text" name="blog_post" value={{ blog_data }}> <br/>
-    <input type="submit" name="submit">
+      Blog Text: <input type="text" name="blog_post"> <br/>
+      <input type="submit" name="submit">
     </form>
     <br>
 {% endblock %}
