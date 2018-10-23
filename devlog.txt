@@ -49,3 +49,9 @@ Make post editing inline
 
 jaredA -- 2018-10-22 13:01
 Created homepage
+
+jaredA -- 2018-10-22 21:18
+Added timestamps for all posts
+
+imadB -- 2018-10-22 21:20
+Added password hashing

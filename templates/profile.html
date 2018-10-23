@@ -23,6 +23,7 @@
             </form>
         {% else %}
             <p>{{ post[2] }}</p>
+            <em>{{ post[3].split('.')[0] }}</em></br>
             {% if post[1] == current_user %}
                 <a href = "{{ url_for('edit', post_id = post[0]) }}">Edit Post</a>
             {% endif %}

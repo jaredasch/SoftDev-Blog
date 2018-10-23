@@ -1,5 +1,6 @@
 from flask import flash, session
 from os import urandom
+from datetime import datetime
 import sqlite3
 DB_FILE = "app.db"
 
@@ -56,7 +57,7 @@ def get_user(username):
 def insert_post(text):
     db = sqlite3.connect(DB_FILE)
     c = db.cursor()
-    c.execute("INSERT INTO posts VALUES (?, ?, ?)", [None, session.get("user"), text])
+    c.execute("INSERT INTO posts VALUES (?, ?, ?, ?)", [None, session.get("user"), text, datetime.now()])
     db.commit()
     db.close()
 
