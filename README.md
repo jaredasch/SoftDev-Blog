@@ -10,5 +10,7 @@ Once all of the dependencies have been installed, all you need to to is create t
 
 ```bash
 $ python3 utils/db_create.py
+$ python3 utils/db_populate.py
+##For default accounts
 $ python3 app.py
 ```

@@ -37,7 +37,10 @@ def login_user(username, password):
         flash("User does not exist")
         db.close()
         return None
-    elif str(user[1]) != str(password):
+    elif user[1] != password:
+        #For testing, should flash username and password
+        #flash(user)
+        #flash(user[1])
         flash("Password is incorrect")
         db.close()
         return None

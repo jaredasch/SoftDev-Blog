@@ -58,3 +58,8 @@ Added password hashing
 
 ryanA -- 2018-10-22 07:39
 Fixed timestamps to be text
+
+ryanA -- 2018-10-22 07:39
+Realized reasons for why old passwords didn't work was bc they weren't hashed.
+New passwords for default accounts, all of them are "hello".  Did further
+testing, updated the README.md.
