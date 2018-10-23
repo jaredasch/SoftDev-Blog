@@ -4,6 +4,7 @@
 - flask
 - wheel
 - sqlite3
+
 To install all of these, run:
 ```bash
 $ python3 -m venv <name>
