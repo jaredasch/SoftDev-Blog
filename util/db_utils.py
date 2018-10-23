@@ -37,7 +37,7 @@ def login_user(username, password):
         flash("User does not exist")
         db.close()
         return None
-    elif user[1] != password:
+    elif str(user[1]) != str(password):
         flash("Password is incorrect")
         db.close()
         return None
@@ -57,7 +57,7 @@ def get_user(username):
 def insert_post(text):
     db = sqlite3.connect(DB_FILE)
     c = db.cursor()
-    c.execute("INSERT INTO posts VALUES (?, ?, ?, ?)", [None, session.get("user"), text, datetime.now()])
+    c.execute("INSERT INTO posts VALUES (?, ?, ?, ?)", [None, session.get("user"), text, str(datetime.now())])
     db.commit()
     db.close()
 

@@ -55,3 +55,6 @@ Added timestamps for all posts
 
 imadB -- 2018-10-22 21:20
 Added password hashing
+
+ryanA -- 2018-10-22 07:39
+Fixed timestamps to be text
