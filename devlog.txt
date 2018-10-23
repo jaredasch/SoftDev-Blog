@@ -63,3 +63,6 @@ ryanA -- 2018-10-22 07:39
 Realized reasons for why old passwords didn't work was bc they weren't hashed.
 New passwords for default accounts, all of them are "hello".  Did further
 testing, updated the README.md.
+
+ryanA -- 2018-10-22 13:22
+Updated README.md, added comments

@@ -8,11 +8,13 @@ app.secret_key = urandom(32)
 
 @app.route("/", methods=["GET"])
 def index():
+    '''Index takes current user and their posts '''
     return render_template("index.html", current_user = session.get("user"), posts = get_all_posts()[::-1])
 
 
 @app.route("/signup", methods = ["GET", "POST"])
 def signup():
+    '''Looks for current user; if exists, redirs them to homepage.  Otherwise, sends them to signup page'''
     if "user" in session.keys():
         return redirect(url_for("index"))
     if request.method == "GET":
@@ -20,6 +22,7 @@ def signup():
     else:
         username = request.form.get("username")
         password = request.form.get("password").encode('utf-8')
+        '''Hash used to secure password'''
         hash_obj = hashlib.md5(password)
         hashpass = hash_obj.hexdigest()
         if create_user(username, hashpass):
@@ -37,9 +40,11 @@ def login():
     else:
         username = request.form.get("username")
         password = request.form.get("password").encode('utf-8')
+        '''Hashes password input to see if this hash matches with auth hash'''
         hash_obj = hashlib.md5(password)
         hashpass = hash_obj.hexdigest()
         login = login_user(username, hashpass)
+        '''If login fail, redir to login page, otherwise send user to homepage'''
         if login == None:
             return render_template("login.html", title = "Login")
         return redirect(url_for("index"))
@@ -47,6 +52,7 @@ def login():
 
 @app.route("/logout", methods = ["GET"])
 def logout():
+    '''Removes current user from session.keys()'''
     if "user" in session.keys():
         session.pop("user")
     return redirect(url_for("login"))
@@ -54,6 +60,7 @@ def logout():
 
 @app.route("/u/<username>", methods = ["GET"])
 def profile(username):
+    '''Homepage if logged in to specific account'''
     return render_template("profile.html", user = username, posts = get_posts(username)[::-1], current_user = session.get("user"))
 
 
