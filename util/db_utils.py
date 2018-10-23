@@ -60,7 +60,7 @@ def get_user(username):
 def insert_post(text):
     db = sqlite3.connect(DB_FILE)
     c = db.cursor()
-    c.execute("INSERT INTO posts VALUES (?, ?, ?, ?)", [None, session.get("user"), text, str(datetime.now())])
+    c.execute("INSERT INTO posts VALUES (?, ?, ?, ?)", [None, session.get("user"), text, datetime.now()])
     db.commit()
     db.close()
 

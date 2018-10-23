@@ -5,7 +5,7 @@ db = sqlite3.connect(DB_FILE)
 c = db.cursor()
 
 c.execute("CREATE TABLE users (username TEXT, password TEXT)")
-c.execute("CREATE TABLE posts (id INTEGER PRIMARY KEY AUTOINCREMENT, username TEXT, body TEXT, time_stamp TEXT)")
+c.execute("CREATE TABLE posts (id INTEGER PRIMARY KEY AUTOINCREMENT, username TEXT, body TEXT, time_stamp INTEGER)")
 
 db.commit()
 db.close()
