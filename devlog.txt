@@ -1,0 +1,74 @@
+ryanA -- 2018-10-15 13:04
+Made devlog
+
+ryanA -- 2018-10-15 13:14
+Added base template
+
+ryanA -- 2018-10-15 18:08
+Added make_blog, edit_blog, landing_site templates.  Variables can be changed to fit future login vars, please let me know.
+
+jaredA -- 2018-10-15 23:52
+Formatted devlog, uploaded design document, remove templates until after code review
+
+imadB -- 2018-10-15 23:20
+Updated site map and uploaded new design document
+
+ryanA -- 2018-10-17 4:49
+Updated design doc, added site map
+
+jaredA -- 2018-10-17 13:12
+Creating user signup system
+
+imadB -- 2018-10-17 413:12
+Creating blog posting system
+
+ryanA -- 2018-10-17 18:03
+Atom didn't teletype my work; templates made
+
+ryanA -- 2018-10-17 13:16
+Added some test data in db_builder, added some constraints for password, fixed syntax issue
+
+jaredA -- 2018-10-21 17:02
+Modified templates to comply with design doc and existing server routes
+
+jaredA -- 2018-10-21 17:40
+Added early versions of count_users, create_user, and login_user
+
+jaredA -- 2018-10-21 18:05
+Working signup, login, and logout routes
+
+jaredA -- 2018-10-21 19:50
+Created profile template, fixed formatting on other templates
+
+imadB -- 2018-10-21 23:30
+Created templates for creating and editing posts and their corresponding post/edit system.
+Still need to give ability to update specific blog posts, not all of them.
+
+jaredA -- 2018-10-22 12:30
+Make post editing inline
+
+jaredA -- 2018-10-22 13:01
+Created homepage
+
+jaredA -- 2018-10-22 21:18
+Added timestamps for all posts
+
+imadB -- 2018-10-22 21:20
+Added password hashing
+
+ryanA -- 2018-10-22 07:39
+Fixed timestamps to be text
+
+ryanA -- 2018-10-22 07:39
+Realized reasons for why old passwords didn't work was bc they weren't hashed.
+New passwords for default accounts, all of them are "hello".  Did further
+testing, updated the README.md.
+
+imadB -- 2018-10-22 13:00
+updated README.md
+
+ryanA -- 2018-10-22 13:22
+Updated README.md, added comments
+
+ryanA -- 2018-10-22 12:27
+Fixed post spam, adjusted passwords so that physical hash will not be displayed directly in db_populate
