@@ -66,3 +66,6 @@ testing, updated the README.md.
 
 ryanA -- 2018-10-22 13:22
 Updated README.md, added comments
+
+ryanA -- 2018-10-22 12:27
+Fixed post spam, adjusted passwords so that physical hash will not be displayed directly in db_populate

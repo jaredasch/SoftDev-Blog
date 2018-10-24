@@ -5,6 +5,12 @@
 {% block content %}
     <h1>User {{ user }}'s Blog</h1>
 
+    {% set msgs = get_flashed_messages() %}
+    {% for each in msgs %}
+        {{ each }}
+        <br/><br/>
+    {% endfor %}
+
     {% if user == current_user %}
         <form action="{{ url_for('create_post') }}" method="POST">
             <textarea name = "blog_post"></textarea></br>
