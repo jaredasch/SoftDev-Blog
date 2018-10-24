@@ -74,6 +74,7 @@ def create_post():
 def edit(post_id):
     if request.method == "GET":
         post = get_post(post_id)
+        '''If the user of the post doesn't match current user, redirs them to profile page''' 
         if(post[1] != session.get("user")):
             return redirect(url_for("profile", username = post[1]))
         return render_template("profile.html", user = session.get("user"), current_user = session.get("user"), posts = get_posts(get_post(post_id)[1])[::-1], edit_id = post_id)

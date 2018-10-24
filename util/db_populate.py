@@ -4,6 +4,8 @@ DB_FILE = "app.db"
 db = sqlite3.connect(DB_FILE)
 c = db.cursor()
 
+
+'''Default users'''
 c.execute("INSERT INTO users VALUES(?, ?);", ('raday', '5d41402abc4b2a76b9719d911017c592'))
 c.execute("INSERT INTO users VALUES(?, ?);", ('jasch', '5d41402abc4b2a76b9719d911017c592'))
 c.execute("INSERT INTO users VALUES(?, ?);", ('ibelkebir', '5d41402abc4b2a76b9719d911017c592'))
