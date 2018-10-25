@@ -73,5 +73,5 @@ Updated README.md, added instructions on installing flask/wheel/sqlite
 ryanA -- 2018-10-24 12:27
 Fixed post spam, adjusted passwords so that physical hash will not be displayed directly in db_populate
 
-imadB -- 2018-10-23
+imadB -- 2018-10-25 0:30
 Added comments to db_utils.py
