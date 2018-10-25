@@ -64,11 +64,14 @@ Realized reasons for why old passwords didn't work was bc they weren't hashed.
 New passwords for default accounts, all of them are "hello".  Did further
 testing, updated the README.md.
 
-imadB -- 2018-10-22 13:00
-updated README.md
-
 ryanA -- 2018-10-22 13:22
 Updated README.md, added comments
 
-ryanA -- 2018-10-22 12:27
+imadB -- 2018-10-23 13:00
+Updated README.md, added instructions on installing flask/wheel/sqlite
+
+ryanA -- 2018-10-24 12:27
 Fixed post spam, adjusted passwords so that physical hash will not be displayed directly in db_populate
+
+imadB -- 2018-10-23
+Added comments to db_utils.py
