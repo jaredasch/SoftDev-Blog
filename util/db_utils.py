@@ -4,6 +4,7 @@ from datetime import datetime
 import sqlite3
 DB_FILE = "app.db"
 
+
 '''Used to check if user exists with create_user,
 reports back int to see if given user has data '''
 
@@ -17,7 +18,8 @@ def count_users(username):
 def create_user(username, password):
     db = sqlite3.connect(DB_FILE)
     c = db.cursor()
-    if count_users(username) > 0:
+    ''' Checks if data corresponding to given username is found '''
+    if get_user(username) > 0:
         flash("User already exists")
         return False
     elif len(username) < 5:
@@ -26,6 +28,7 @@ def create_user(username, password):
     elif len(password) < 5:
         flash("Password must be at least 5 characters")
         return False
+    ''' If username and password meet length specifications, add name and pass combo to table '''
     c.execute("INSERT INTO users VALUES (?, ?)", [username, password])
     db.commit()
     db.close()
@@ -34,7 +37,8 @@ def create_user(username, password):
 def login_user(username, password):
     db = sqlite3.connect(DB_FILE)
     c = db.cursor()
-    user = c.execute("SELECT * FROM users WHERE users.username == ?" , [username]).fetchone()
+    user = get_user(username)
+    ''' Checks if no data can be found on given username '''
     if user == None:
         flash("User does not exist")
         db.close()
@@ -43,6 +47,7 @@ def login_user(username, password):
         flash("Password is incorrect")
         db.close()
         return None
+    ''' Set current session user '''
     session["user"] = username
     db.close()
     return True
@@ -61,6 +66,7 @@ def insert_post(text):
     c = db.cursor()
     '''If statement prevents empty posts from being spammed'''
     if (text != ''):
+        ''' ID is automatically assigned in ascending order for each post '''
         c.execute("INSERT INTO posts VALUES (?, ?, ?, ?)", [None, session.get("user"), text, datetime.now()])
     else:
         flash("No input for post")
@@ -72,6 +78,7 @@ def get_posts(username):
     db = sqlite3.connect(DB_FILE)
     db.text_factory = str
     c = db.cursor()
+    ''' Get post based on username '''
     posts = c.execute("SELECT * FROM posts WHERE posts.username == ?", [username]).fetchall()
     db.close()
     return posts
@@ -80,6 +87,7 @@ def get_posts(username):
 def get_post(id):
     db = sqlite3.connect(DB_FILE)
     c = db.cursor()
+    ''' Get post based on ID '''
     post = c.execute("SELECT * FROM posts WHERE posts.id == ?" , [id]).fetchone()
     db.close()
     return post
@@ -88,6 +96,7 @@ def get_post(id):
 def edit_post(post_id, text):
     db = sqlite3.connect(DB_FILE)
     c = db.cursor()
+    ''' Find corresponding post using ID and update its text '''
     c.execute("UPDATE posts SET body == ? WHERE posts.id == ?", [text, post_id])
     db.commit()
     db.close()
@@ -96,6 +105,7 @@ def edit_post(post_id, text):
 def get_all_posts():
     db = sqlite3.connect(DB_FILE)
     c = db.cursor()
+    ''' Gets all posts created '''
     data = c.execute("SELECT * FROM posts").fetchall()
     db.commit()
     db.close()
