@@ -4,6 +4,9 @@ from datetime import datetime
 import sqlite3
 DB_FILE = "app.db"
 
+'''Used to check if user exists with create_user,
+reports back int to see if given user has data '''
+
 def count_users(username):
     db = sqlite3.connect(DB_FILE)
     c = db.cursor()
@@ -28,7 +31,6 @@ def create_user(username, password):
     db.close()
     return True
 
-
 def login_user(username, password):
     db = sqlite3.connect(DB_FILE)
     c = db.cursor()
@@ -38,9 +40,6 @@ def login_user(username, password):
         db.close()
         return None
     elif user[1] != password:
-        #For testing, should flash username and password
-        #flash(user)
-        #flash(user[1])
         flash("Password is incorrect")
         db.close()
         return None
@@ -60,6 +59,7 @@ def get_user(username):
 def insert_post(text):
     db = sqlite3.connect(DB_FILE)
     c = db.cursor()
+    '''If statement prevents empty posts from being spammed'''
     if (text != ''):
         c.execute("INSERT INTO posts VALUES (?, ?, ?, ?)", [None, session.get("user"), text, datetime.now()])
     else:
