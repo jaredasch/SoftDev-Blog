@@ -100,3 +100,6 @@ Added comments to db_utils.py
 
 jaredA -- 2018-10-28 23:18
 Minor bug fixes from hashing and other UX improvements
+
+imadB -- 2018-10-28 23:20
+Created new component map, updated design doc
