@@ -25,7 +25,7 @@ def signup():
         '''Hash used to secure password'''
         hash_obj = hashlib.md5(password)
         hashpass = hash_obj.hexdigest()
-        if create_user(username, hashpass):
+        if create_user(username, password):
             login_user(username, hashpass)
             return redirect(url_for("index"))
         return render_template("signup.html", title = "Sign Up")

@@ -2,6 +2,7 @@ from flask import flash, session
 from os import urandom
 from datetime import datetime
 import sqlite3
+import hashlib
 DB_FILE = "app.db"
 
 
@@ -19,7 +20,7 @@ def create_user(username, password):
     db = sqlite3.connect(DB_FILE)
     c = db.cursor()
     ''' Checks if data corresponding to given username is found '''
-    if get_user(username) > 0:
+    if get_user(username):
         flash("User already exists")
         return False
     elif len(username) < 5:
@@ -28,8 +29,10 @@ def create_user(username, password):
     elif len(password) < 5:
         flash("Password must be at least 5 characters")
         return False
+    hash_obj = hashlib.md5(password)
+    hashpass = hash_obj.hexdigest()
     ''' If username and password meet length specifications, add name and pass combo to table '''
-    c.execute("INSERT INTO users VALUES (?, ?)", [username, password])
+    c.execute("INSERT INTO users VALUES (?, ?)", [username, hashpass])
     db.commit()
     db.close()
     return True

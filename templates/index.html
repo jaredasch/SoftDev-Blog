@@ -15,7 +15,7 @@
 
 {% for post in posts %}
     <hr/>
-    <h3>{{ post[1] }}</h4>
+    <a href = "{{ url_for('profile', username = post[1]) }}"><h4>{{ post[1] }}</h4></a>
     {% if edit_id == post[0] %}
         <form action="{{ url_for('edit', post_id = edit_id) }}" method="POST">
             <textarea name = "blog_post">{{ post[2] }}</textarea></br>
